@@ -1,0 +1,347 @@
+{
+  "info": {
+    "name": "House Price Prediction API",
+    "description": "Complete API testing collection for the House Price Prediction ML application",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "patch": 0
+    }
+  },
+  "item": [
+    {
+      "name": "Health & Status",
+      "item": [
+        {
+          "name": "API Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": ["{{base_url}}"],
+              "path": ["health"]
+            },
+            "description": "Check if the API is running and model is loaded successfully"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('API is healthy', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.status).to.eql('healthy');",
+                  "    pm.expect(jsonData.model_loaded).to.be.true;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Welcome Message",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/",
+              "host": ["{{base_url}}"],
+              "path": [""]
+            },
+            "description": "Get welcome message and available endpoints"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Price Predictions",
+      "item": [
+        {
+          "name": "Predict House Price - Valid Input",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"size_sqft\": 2000,\n  \"bedrooms\": 3,\n  \"bathrooms\": 2,\n  \"age_years\": 10,\n  \"location_factor\": 1.2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/predict",
+              "host": ["{{base_url}}"],
+              "path": ["predict"]
+            },
+            "description": "Predict price for a typical 3-bedroom house"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Response has required fields', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('predicted_price');",
+                  "    pm.expect(jsonData).to.have.property('formatted_price');",
+                  "    pm.expect(jsonData).to.have.property('confidence_level');",
+                  "    pm.expect(jsonData).to.have.property('features_used');",
+                  "});",
+                  "",
+                  "pm.test('Price is reasonable', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.predicted_price).to.be.above(50000);",
+                  "    pm.expect(jsonData.predicted_price).to.be.below(1000000);",
+                  "});",
+                  "",
+                  "pm.test('Confidence level is valid', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(['High', 'Medium', 'Low']).to.include(jsonData.confidence_level);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Predict House Price - Large House",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"size_sqft\": 4500,\n  \"bedrooms\": 5,\n  \"bathrooms\": 4,\n  \"age_years\": 2,\n  \"location_factor\": 1.8\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/predict",
+              "host": ["{{base_url}}"],
+              "path": ["predict"]
+            },
+            "description": "Predict price for a large, new house in premium location"
+          },
+          "response": []
+        },
+        {
+          "name": "Predict House Price - Small House",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"size_sqft\": 900,\n  \"bedrooms\": 1,\n  \"bathrooms\": 1,\n  \"age_years\": 30,\n  \"location_factor\": 0.8\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/predict",
+              "host": ["{{base_url}}"],
+              "path": ["predict"]
+            },
+            "description": "Predict price for a small, older studio apartment"
+          },
+          "response": []
+        },
+        {
+          "name": "Predict House Price - Edge Case (Low Confidence)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"size_sqft\": 8000,\n  \"bedrooms\": 8,\n  \"bathrooms\": 6,\n  \"age_years\": 80,\n  \"location_factor\": 2.5\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/predict",
+              "host": ["{{base_url}}"],
+              "path": ["predict"]
+            },
+            "description": "Predict price for an unusual mansion (should get low confidence)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Error Handling",
+      "item": [
+        {
+          "name": "Invalid Input - Negative Size",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"size_sqft\": -100,\n  \"bedrooms\": 3,\n  \"bathrooms\": 2,\n  \"age_years\": 10,\n  \"location_factor\": 1.2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/predict",
+              "host": ["{{base_url}}"],
+              "path": ["predict"]
+            },
+            "description": "Test validation with negative house size"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 422 (Validation Error)', function () {",
+                  "    pm.response.to.have.status(422);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Invalid Input - Missing Field",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"size_sqft\": 2000,\n  \"bedrooms\": 3,\n  \"bathrooms\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/predict",
+              "host": ["{{base_url}}"],
+              "path": ["predict"]
+            },
+            "description": "Test validation with missing required fields"
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid Input - Wrong Data Type",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"size_sqft\": \"very big\",\n  \"bedrooms\": 3,\n  \"bathrooms\": 2,\n  \"age_years\": 10,\n  \"location_factor\": 1.2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/predict",
+              "host": ["{{base_url}}"],
+              "path": ["predict"]
+            },
+            "description": "Test validation with wrong data type"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Model Information",
+      "item": [
+        {
+          "name": "Get Model Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/model/info",
+              "host": ["{{base_url}}"],
+              "path": ["model", "info"]
+            },
+            "description": "Get detailed information about the trained model"
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test('Model info contains required fields', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData).to.have.property('model_type');",
+                  "    pm.expect(jsonData).to.have.property('test_rmse');",
+                  "    pm.expect(jsonData).to.have.property('test_r2');",
+                  "});",
+                  "",
+                  "pm.test('Model performance is good', function () {",
+                  "    const jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.test_r2).to.be.above(0.8);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get Sample Data",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/sample-data",
+              "host": ["{{base_url}}"],
+              "path": ["sample-data"]
+            },
+            "description": "Get sample house data for testing"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    }
+  ]
+}

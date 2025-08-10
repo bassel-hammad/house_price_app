@@ -166,6 +166,28 @@ confidence_score = sum(confidence_factors) / len(confidence_factors)
 - **Caching**: Optimized API calls for better performance
 - **Health Monitoring**: API status checks and model loading verification
 
+## 🧪 API Testing
+
+### **Postman Collection**
+A comprehensive Postman collection is provided for testing all API endpoints:
+
+- **Location**: `postman/api_collection.json`
+- **Import**: Open Postman → Import → Upload JSON file
+- **Environment**: Set `base_url` to `http://localhost:8000`
+
+### **Test Coverage:**
+- ✅ Health checks and status endpoints
+- ✅ Valid predictions with different house types
+- ✅ Error handling and input validation
+- ✅ Model information and performance metrics
+- ✅ Automated test assertions
+
+### **Running Tests:**
+1. Start the API: `python api.py`
+2. Import collection into Postman
+3. Run collection or individual requests
+4. View automated test results
+
 ## 🏗️ Architecture
 
 ```
@@ -211,4 +233,5 @@ confidence_score = sum(confidence_factors) / len(confidence_factors)
 
 ### 📈 **Learning Journey Summary:**
 From understanding basic linear regression concepts to building a complete, production-ready ML application with modern web technologies - this project represents a comprehensive learning experience in machine learning engineering.
+
 
