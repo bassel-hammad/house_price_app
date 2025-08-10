@@ -14,21 +14,21 @@ A complete machine learning application for predicting house prices using Linear
 ## 📱 Live Application Demo
 
 ### **🎨 Streamlit Frontend**
-![Main Interface](screenshots/streamlit_main.png)
+<img width="1908" height="805" alt="image" src="https://github.com/user-attachments/assets/22a886e1-cd88-49e8-b1db-9fc1be3bb858" />
+
 *Clean, responsive interface for house price predictions*
 
-![Prediction Results](screenshots/prediction_results.png)
+<img width="1124" height="512" alt="image" src="https://github.com/user-attachments/assets/9a03d769-d6ff-4cb1-bd8a-5bea1f56da59" />
+
 *Real-time predictions with confidence scoring and interactive visualizations*
 
-### **🔗 FastAPI Backend**
-![Swagger Documentation](screenshots/swagger_docs.png)
-*Automatic API documentation with interactive testing capabilities*
 
-![API Response](screenshots/api_test.png)
-*JSON response showing prediction, confidence level, and formatted price*
 
 ### **🤖 Model Training**
-![Training Output](screenshots/training_output.png)
+<img width="919" height="291" alt="image" src="https://github.com/user-attachments/assets/2b4f7078-27fc-47cf-8a07-dfe9cfa011a2" />
+<img width="1364" height="564" alt="image" src="https://github.com/user-attachments/assets/3056bc4e-242f-4d89-be72-11325ed29e30" />
+
+
 *Model training results showing excellent performance metrics (R² = 94.3%)*
 
 ## 🛠️ Tech Stack
