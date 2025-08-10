@@ -14,19 +14,19 @@ A complete machine learning application for predicting house prices using Linear
 ## 📱 Live Application Demo
 
 ### **🎨 Streamlit Frontend**
-<img width="1908" height="805" alt="image" src="https://github.com/user-attachments/assets/22a886e1-cd88-49e8-b1db-9fc1be3bb858" />
+<img width="850" height="400" alt="image" src="https://github.com/user-attachments/assets/22a886e1-cd88-49e8-b1db-9fc1be3bb858" />
 
 *Clean, responsive interface for house price predictions*
 
-<img width="1124" height="512" alt="image" src="https://github.com/user-attachments/assets/9a03d769-d6ff-4cb1-bd8a-5bea1f56da59" />
+<img width="550" height="250" alt="image" src="https://github.com/user-attachments/assets/9a03d769-d6ff-4cb1-bd8a-5bea1f56da59" />
 
 *Real-time predictions with confidence scoring and interactive visualizations*
 
 
 
 ### **🤖 Model Training**
-<img width="919" height="291" alt="image" src="https://github.com/user-attachments/assets/2b4f7078-27fc-47cf-8a07-dfe9cfa011a2" />
-<img width="1364" height="564" alt="image" src="https://github.com/user-attachments/assets/3056bc4e-242f-4d89-be72-11325ed29e30" />
+<img width="450" height="145" alt="image" src="https://github.com/user-attachments/assets/2b4f7078-27fc-47cf-8a07-dfe9cfa011a2" />
+<img width="680" height="260" alt="image" src="https://github.com/user-attachments/assets/3056bc4e-242f-4d89-be72-11325ed29e30" />
 
 
 *Model training results showing excellent performance metrics (R² = 94.3%)*
