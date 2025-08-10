@@ -11,6 +11,26 @@ A complete machine learning application for predicting house prices using Linear
 - **Model performance metrics** and sample data exploration
 - **Intelligent confidence system** based on training data similarity
 
+## 📱 Live Application Demo
+
+### **🎨 Streamlit Frontend**
+![Main Interface](screenshots/streamlit_main.png)
+*Clean, responsive interface for house price predictions*
+
+![Prediction Results](screenshots/prediction_results.png)
+*Real-time predictions with confidence scoring and interactive visualizations*
+
+### **🔗 FastAPI Backend**
+![Swagger Documentation](screenshots/swagger_docs.png)
+*Automatic API documentation with interactive testing capabilities*
+
+![API Response](screenshots/api_test.png)
+*JSON response showing prediction, confidence level, and formatted price*
+
+### **🤖 Model Training**
+![Training Output](screenshots/training_output.png)
+*Model training results showing excellent performance metrics (R² = 94.3%)*
+
 ## 🛠️ Tech Stack
 
 - **Frontend**: Streamlit
@@ -191,3 +211,4 @@ confidence_score = sum(confidence_factors) / len(confidence_factors)
 
 ### 📈 **Learning Journey Summary:**
 From understanding basic linear regression concepts to building a complete, production-ready ML application with modern web technologies - this project represents a comprehensive learning experience in machine learning engineering.
+
