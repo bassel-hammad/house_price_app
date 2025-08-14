@@ -111,12 +111,12 @@ def main():
         
         with col1:
             size_sqft = st.slider("House Size (sqft)", 500, 5000, 2000, 50)
-            bedrooms = st.selectbox("Bedrooms", [1,2,3,4,5,6,7,8,9,10], index=2)
-            bathrooms = st.selectbox("Bathrooms", [1,2,3,4,5,6,7,8,9,10], index=1)
+            bedrooms = st.selectbox("Bedrooms", [1,2,3,4,5], index=2)
+            bathrooms = st.selectbox("Bathrooms", [1,2,3,4], index=1)
         
         with col2:
-            age_years = st.slider("House Age (years)", 0, 100, 10)
-            location_factor = st.slider("Location Quality", 0.5, 3.0, 1.2, 0.1)
+            age_years = st.slider("House Age (years)", 0, 50, 10)
+            location_factor = st.slider("Location Quality", 0.5, 2.0, 1.2, 0.1)
         
         # This button only triggers when clicked
         submitted = st.form_submit_button("🔮 Predict Price", type="primary")
